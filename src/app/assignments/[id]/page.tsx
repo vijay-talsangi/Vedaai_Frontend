@@ -8,6 +8,7 @@ import { Download, RefreshCw, Sparkles } from 'lucide-react';
 
 import { PaperOutput } from '@/components/assignment/PaperOutput';
 import { GenerationStatus } from '@/components/assignment/GenerationStatus';
+import { Badge } from '@/components/ui/Badge';
 import { SkeletonPaper } from '@/components/ui/Skeleton';
 import { Button } from '@/components/ui/Button';
 import { api } from '@/lib/api';
@@ -100,9 +101,64 @@ export default function AssignmentDetailPage() {
   const showPaper =
     generationStatus === 'completed' &&
     assignment?.generatedPaper;
+  const statusLabel =
+    assignment?.status === 'completed'
+      ? 'Completed'
+      : assignment?.status === 'processing'
+        ? 'Generating'
+        : assignment?.status === 'failed'
+          ? 'Failed'
+          : 'Created';
 
   return (
     <div className="p-4 lg:p-8 space-y-6">
+      {assignment && !showPaper && (
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mx-auto max-w-[920px] rounded-2xl border border-vedaai-border bg-white p-5 shadow-[0_12px_30px_rgba(0,0,0,0.06)]"
+        >
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div className="space-y-2">
+              <div className="flex flex-wrap items-center gap-2">
+                <Badge
+                  variant={
+                    assignment.status === 'completed'
+                      ? 'success'
+                      : assignment.status === 'processing'
+                        ? 'info'
+                        : assignment.status === 'failed'
+                          ? 'error'
+                          : 'warning'
+                  }
+                >
+                  {statusLabel}
+                </Badge>
+                <span className="text-sm text-vedaai-text-secondary">
+                  Assignment created
+                </span>
+              </div>
+              <h2 className="text-[22px] font-bold text-vedaai-text">
+                {assignment.title}
+              </h2>
+              <p className="text-sm text-vedaai-text-secondary">
+                {assignment.subject} • Class {assignment.grade}
+                {assignment.dueDate ? ` • Due ${assignment.dueDate}` : ''}
+              </p>
+            </div>
+            <div className="rounded-xl bg-[#fafafa] px-4 py-3 text-sm text-vedaai-text-secondary">
+              {assignment.status === 'completed'
+                ? 'Your question paper is ready.'
+                : assignment.status === 'processing'
+                  ? 'Question paper is being generated now.'
+                  : assignment.status === 'failed'
+                    ? 'Generation failed. You can retry below.'
+                    : 'Assignment saved successfully. Generation is starting.'}
+            </div>
+          </div>
+        </motion.div>
+      )}
+
       {/* Success Banner */}
       {showPaper && (
         <motion.div
