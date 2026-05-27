@@ -142,7 +142,7 @@ export default function AssignmentsPage() {
               ))}
             </motion.div>
 
-            <div className="hidden justify-end pt-2 lg:flex">
+            <div className="hidden justify-center pt-2 lg:flex">
               <Link href="/assignments/create">
                 <motion.button
                   whileHover={{ scale: 1.02 }}

@@ -258,6 +258,19 @@ export function AssignmentForm() {
                   error={errors.dueDate?.message}
                   {...register('dueDate')}
                 />
+                {/* Time Allowed Dropdown */}
+                <Select
+                  label="Time Allowed"
+                  options={[
+                    { value: '30 minutes', label: '30 minutes' },
+                    { value: '1 hour', label: '1 hour' },
+                    { value: '90 minutes', label: '90 minutes' },
+                    { value: '2 hours', label: '2 hours' },
+                  ]}
+                  placeholder="Select time allowed for the assignment"
+                  error={errors.timeAllowed?.message}
+                  {...register('timeAllowed')}
+                />
               </div>
 
               {/* Question Types */}

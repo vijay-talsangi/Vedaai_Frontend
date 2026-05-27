@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
 import { Download, RefreshCw, Sparkles } from 'lucide-react';
+import { useReactToPrint } from 'react-to-print';
 
 import { PaperOutput } from '@/components/assignment/PaperOutput';
 import { GenerationStatus } from '@/components/assignment/GenerationStatus';
@@ -19,6 +20,7 @@ import type { Assignment } from '@/types';
 export default function AssignmentDetailPage() {
   const params = useParams();
   const id = params.id as string;
+  const paperRef = useRef<HTMLDivElement>(null);
   const {
     currentAssignment,
     setCurrentAssignment,
@@ -31,6 +33,30 @@ export default function AssignmentDetailPage() {
 
   // Connect socket for real-time updates
   useSocket(id);
+
+  const handlePrint = useReactToPrint({
+    contentRef: paperRef,
+    documentTitle: `assignment-${id}`,
+    pageStyle: `
+      @page {
+        size: A4;
+        margin: 1mm;
+      }
+
+      @media print {
+        html, body {
+          background: #fff !important;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+
+        * {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+      }
+    `,
+  });
 
   const fetchAssignment = useCallback(async () => {
     setIsLoading(true);
@@ -61,10 +87,6 @@ export default function AssignmentDetailPage() {
       reset();
     };
   }, [fetchAssignment, reset]);
-
-  const handlePrint = () => {
-    window.print();
-  };
 
   const handleRetry = async () => {
     reset();
@@ -219,6 +241,8 @@ export default function AssignmentDetailPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
+          ref={paperRef}
+          className="print-paper"
         >
           <PaperOutput
             paper={assignment.generatedPaper}

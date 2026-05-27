@@ -67,8 +67,8 @@ export function PaperOutput({
             <span className="border-b border-vedaai-text inline-block w-28" />
           </div>
           <div>
-            Class: <span className="border-b border-vedaai-text inline-block w-12" />{' '}
-            Section: <span className="border-b border-vedaai-text inline-block w-16" />
+            Class: <span className="border-b border-vedaai-text inline-block w-10" />{' '}
+            Section: <span className="border-b border-vedaai-text inline-block w-10" />
           </div>
         </div>
 

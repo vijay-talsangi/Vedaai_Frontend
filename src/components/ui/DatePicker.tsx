@@ -37,7 +37,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
             )}
             {...props}
           />
-          <Calendar className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+          {/* <Calendar className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" /> */}
         </div>
         {error && (
           <p className="mt-1 text-xs text-vedaai-error">{error}</p>

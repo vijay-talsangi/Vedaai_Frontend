@@ -67,6 +67,17 @@
     padding: 20mm !important;
     max-width: 100% !important;
   }
+
+  .print-paper {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  .print-paper .paper-output {
+    border-radius: 0 !important;
+    border-color: #d9d9d9 !important;
+  }
 }
 
 /* Smooth transitions */
