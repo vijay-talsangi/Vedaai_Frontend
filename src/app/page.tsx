@@ -266,6 +266,7 @@ export default function HomePage() {
             title="No assignments yet"
             description="Create your first assignment and let AI generate a professional question paper for you."
             actionLabel="Create Assignment"
+            icon={<img src="/illustrations.png" alt="No Assignments" />}
             onAction={() => router.push('/assignments/create')}
           />
         ) : (

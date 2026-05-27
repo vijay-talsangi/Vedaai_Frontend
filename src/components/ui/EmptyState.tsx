@@ -14,8 +14,8 @@ interface EmptyStateProps {
 
 export function EmptyState({
   title = 'No assignments yet',
-  description = 'Create your first assignment and let AI generate a professional question paper for you.',
-  actionLabel = 'Create Assignment',
+  description = 'Create your first assignment to start collecting and grading student submissions. You can set up rubrics, define marking criteria, and let AI assist with grading.',
+  actionLabel = 'Create Your First Assignment',
   onAction,
   className,
   icon,
@@ -27,7 +27,7 @@ export function EmptyState({
         className
       )}
     >
-      <div className="flex items-center justify-center h-20 w-20 rounded-full bg-orange-50 mb-6">
+      <div className="flex items-center justify-center h-55 w-55 rounded-full bg-orange-50 mb-6">
         {icon || <FileText className="h-10 w-10 text-vedaai-accent" />}
       </div>
 
