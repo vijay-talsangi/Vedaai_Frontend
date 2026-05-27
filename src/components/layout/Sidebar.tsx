@@ -29,9 +29,7 @@ export function Sidebar() {
     <aside className="hidden lg:flex flex-col sidebar-width h-[calc(100vh-2rem)] bg-white/96 border border-white/70 radius-lg fixed left-5 top-4 z-30 card-surface backdrop-blur overflow-hidden">
       {/* Logo */}
       <div className="flex items-center gap-3 px-6 pt-6 pb-5">
-        <div className="flex items-center justify-center h-10 w-10 radius-md bg-vedaai-accent shadow-sm">
-          <img src="vedaai.png" alt="logo" />
-        </div>
+        <img className="flex items-center justify-center h-10 w-10 radius-md bg-vedaai-accent shadow-sm" src="vedaai.png" alt="logo" />
         <span className="text-2xl font-bold text-vedaai-text">VedaAI</span>
       </div>
 
