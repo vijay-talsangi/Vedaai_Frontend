@@ -1,26 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-vedaai-primary: #1A1A1A;
+  --color-vedaai-accent: #E8730C;
+  --color-vedaai-surface: #FFFFFF;
+  --color-vedaai-bg: #F5F5F5;
+  --color-vedaai-border: #E5E5E5;
+  --color-vedaai-text: #1A1A1A;
+  --color-vedaai-text-secondary: #6B7280;
+  --color-vedaai-success: #22C55E;
+  --color-vedaai-error: #EF4444;
+  --color-vedaai-warning: #F59E0B;
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  /* Layout tokens (for Figma parity tweaks) */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 24px;
+  --card-shadow: 0 18px 60px rgba(0,0,0,0.08);
+  --card-shadow-strong: 0 18px 50px rgba(0,0,0,0.12);
+  --topbar-height: 72px;
+  --sidebar-width: 300px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  body {
+    background: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .paper-output {
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 20mm !important;
+    max-width: 100% !important;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Smooth transitions */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Animation utilities */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e0e0e0 50%,
+    #f0f0f0 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  80%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+/* Utility helpers to centralize visual tokens for easier tuning */
+.radius-lg { border-radius: var(--radius-lg); }
+.radius-md { border-radius: var(--radius-md); }
+.radius-sm { border-radius: var(--radius-sm); }
+.card-surface { box-shadow: var(--card-shadow); background: var(--color-vedaai-surface); }
+.card-strong { box-shadow: var(--card-shadow-strong); }
+.topbar-height { height: var(--topbar-height); }
+.sidebar-width { width: var(--sidebar-width); }
+
+/* Typography tokens */
+:root {
+  --fs-base: 15px;
+  --fs-sm: 13px;
+  --fs-lg: 18px;
+  --fs-xl: 22px;
+  --lead: 1.5;
+}
+
+html, body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lead);
+  color: var(--color-vedaai-text);
+  background: var(--color-vedaai-bg);
+}
+
+/* Centered content container used across pages to match Figma width */
+.page-container {
+  max-width: 1160px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Utility for tighter section spacing */
+.section-tight { margin-top: 6px; margin-bottom: 6px; }
+
+/* Mobile-specific token adjustments to better match Figma mobile frames */
+@media (max-width: 640px) {
+  :root {
+    --topbar-height: 64px;
+    --sidebar-width: 0px;
+    --fs-base: 14px;
+  }
+
+  .page-container { padding-left: 8px; padding-right: 8px; }
+
+  .page-card { padding: 14px !important; }
+
 }
