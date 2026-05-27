@@ -124,7 +124,7 @@ export default function AssignmentsPage() {
       ) : !hasAssignments ? (
         <EmptyState
           onAction={() => router.push('/assignments/create')}
-          icon={<img src="/illustrations.png" alt="No Assignments" />}
+          icon={<img src="/Illustrations.png" alt="No Assignments" />}
         />
       ) : filteredAssignments.length === 0 ? (
         <EmptyState
