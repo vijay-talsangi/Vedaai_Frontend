@@ -35,7 +35,7 @@ export function PaperOutput({
             Subject: {subject}
           </p>
           <p className="text-[15px] font-semibold text-vedaai-text sm:text-[16px]">
-            Class: {grade}
+            Class: {grade}{grade === '1' ? 'st' : grade === '2' ? 'nd' : grade === '3' ? 'rd' : 'th'}
           </p>
         </div>
 
@@ -53,22 +53,25 @@ export function PaperOutput({
         </div>
 
         {/* General Instructions */}
-        <div className="border-l-4 border-vedaai-accent pl-4 text-[13px] italic text-vedaai-text-secondary sm:text-sm">
+        <div className="border-l-4 border-vedaai-accent pl-4 text-[13px] italic text-vedaai-text sm:text-sm">
           All questions are compulsory unless stated otherwise.
         </div>
 
         {/* Student Info */}
-        <div className="grid grid-cols-1 gap-3 radius-md border border-[#ececec] p-4 text-sm text-vedaai-text sm:grid-cols-3">
-          <div>
-            Name: <span className="border-b border-vedaai-text inline-block w-40" />
+        <div className="flex flex-col gap-3 radius-md p-4 text-sm text-vedaai-text">
+          <div className="flex items-end gap-2">
+            <span className="shrink-0">Name:</span>
+            <span className="flex-1 border-b border-vedaai-text translate-y-[-2px]" />
           </div>
-          <div>
-            Roll Number:{' '}
-            <span className="border-b border-vedaai-text inline-block w-28" />
+          <div className="flex items-end gap-2">
+            <span className="shrink-0">Roll Number:</span>
+            <span className="w-34 border-b border-vedaai-text translate-y-[-2px]" />
           </div>
-          <div>
-            Class: <span className="border-b border-vedaai-text inline-block w-10" />{' '}
-            Section: <span className="border-b border-vedaai-text inline-block w-10" />
+          <div className="flex items-end gap-2">
+            <span className="shrink-0">Class:</span>
+            {grade}{grade === '1' ? 'st' : grade === '2' ? 'nd' : grade === '3' ? 'rd' : 'th'}
+            <span className="shrink-0">Section:</span>
+            <span className="w-14 border-b border-vedaai-text translate-y-[-2px]" />
           </div>
         </div>
 
