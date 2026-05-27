@@ -26,7 +26,7 @@ export default function AssignmentsPage() {
   const fetchAssignments = useCallback(async () => {
     setLoading(true);
     try {
-      const data = await api.getAssignments(1, 20, searchQuery);
+      const data = await api.getAssignments(1, 20);
       setAssignments(data.assignments);
     } catch {
       // If API is not available, show empty state
@@ -35,7 +35,7 @@ export default function AssignmentsPage() {
       setLoading(false);
       setHasLoaded(true);
     }
-  }, [searchQuery, setAssignments, setLoading]);
+  }, [setAssignments, setLoading]);
 
   useEffect(() => {
     fetchAssignments();
@@ -51,11 +51,17 @@ export default function AssignmentsPage() {
     }
   };
 
-  const filteredAssignments = (assignments ?? []).filter(
-    (a) =>
-      a.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      a.subject.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const normalizedQuery = searchQuery.trim().toLowerCase();
+  const filteredAssignments = (assignments ?? []).filter((assignment) => {
+    if (!normalizedQuery) return true;
+
+    return (
+      assignment.title.toLowerCase().includes(normalizedQuery) ||
+      assignment.subject.toLowerCase().includes(normalizedQuery) ||
+      assignment.grade.toLowerCase().includes(normalizedQuery) ||
+      assignment.schoolName.toLowerCase().includes(normalizedQuery)
+    );
+  });
 
   return (
     <div

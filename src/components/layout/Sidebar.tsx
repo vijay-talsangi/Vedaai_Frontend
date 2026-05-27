@@ -30,7 +30,7 @@ export function Sidebar() {
       {/* Logo */}
       <div className="flex items-center gap-3 px-6 pt-6 pb-5">
         <div className="flex items-center justify-center h-10 w-10 radius-md bg-vedaai-accent shadow-sm">
-          <span className="text-white font-bold text-lg leading-none">V</span>
+          <img src="vedaai.png" alt="logo" />
         </div>
         <span className="text-2xl font-bold text-vedaai-text">VedaAI</span>
       </div>
