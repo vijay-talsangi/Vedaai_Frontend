@@ -148,6 +148,10 @@ html, body {
 /* Utility for tighter section spacing */
 .section-tight { margin-top: 6px; margin-bottom: 6px; }
 
+.app-shell {
+  padding-left: calc(var(--sidebar-width) + 20px);
+}
+
 /* Mobile-specific token adjustments to better match Figma mobile frames */
 @media (max-width: 640px) {
   :root {
@@ -157,6 +161,10 @@ html, body {
   }
 
   .page-container { padding-left: 8px; padding-right: 8px; }
+
+  .app-shell {
+    padding-left: 0;
+  }
 
   .page-card { padding: 14px !important; }
 

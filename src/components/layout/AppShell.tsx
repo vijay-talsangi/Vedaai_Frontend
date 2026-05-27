@@ -16,7 +16,7 @@ export function AppShell({ children }: AppShellProps) {
       <Sidebar />
 
       {/* Main Content Area */}
-      <div className="flex flex-col min-h-screen" style={{ paddingLeft: 'calc(var(--sidebar-width) + var(--lg:20px))' }}>
+      <div className="flex flex-col min-h-screen app-shell">
         {/* Top Bar */}
         <TopBar />
 
